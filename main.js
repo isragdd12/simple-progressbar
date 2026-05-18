@@ -25,7 +25,10 @@ module.exports = class ProgbarPlugin extends Plugin {
             const initialValue = options.value ?? 0;
             const id = options.id ?? 'no-id';
             const name = options.name ?? 'Unnamed';
-            const barWidth = options.width ?? '160px'
+            const barWidth = options.width ?? '160px';
+            const step = options.step ?? 1;
+            const btnUp = options.btnUp ?? '+'
+            const btnDown = options.btnDown ?? '-'
             const showName = options.showName ?? true;
             const showButtons = options.showButtons ?? true;
             const showId = options.showId ?? false;
@@ -34,6 +37,7 @@ module.exports = class ProgbarPlugin extends Plugin {
             const customFormat = options.customFormat ?? '[{value}/{max}] ';
 
             const renderTemplate = (currentVal) => {
+                let percent = Math.round((currentVal/max) * 100)
                 return customFormat
                     .replace("{name}", name)
                     .replace("{max}", max)
@@ -41,14 +45,17 @@ module.exports = class ProgbarPlugin extends Plugin {
                     .replace("{val}", currentVal)
                     .replace("{id}", id)
                     .replace("{barWidth}", barWidth)
-                    .replace("{format}", customFormat);
+                    .replace("{step}", step)
+                    .replace("{percent}", percent)
+                    .replace("{%}", percent)
+                    .replace("{percentage}", percent);
             };
 
             const container = el.createDiv();
             const nameLabel = container.createEl('span', { text: name });
-            const btnsub = container.createEl('button', { text: '-' });
+            const btnsub = container.createEl('button', { text: btnDown });
             const progress = container.createEl('progress', { attr: { max, value: initialValue, id } });
-            const btnadd = container.createEl('button', { text: '+' });
+            const btnadd = container.createEl('button', { text: btnUp });
             const label = container.createEl('span', { text: renderTemplate(initialValue) });
             const idLabel = container.createEl('span', { text: ` (${id})` });
 
@@ -70,14 +77,14 @@ module.exports = class ProgbarPlugin extends Plugin {
 
             btnadd.addEventListener('click', () => {
                 if (progress.value < max) {
-                    progress.value += 1;
+                    progress.value += step;
                     label.innerText = renderTemplate(progress.value);
                 }
             });
 
             btnsub.addEventListener('click', () => {
                 if (progress.value > 0) {
-                    progress.value -= 1;
+                    progress.value -= step;
                     label.innerText = renderTemplate(progress.value);
                 }
             });

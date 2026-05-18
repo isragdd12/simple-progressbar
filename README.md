@@ -27,6 +27,8 @@ id: new-progressbar
 
 And that's it! You now have a completely working progress bar:)
 
+---
+
 And yes, there is more customization for it, if you want to see them, go to the [Properties Page](#properties).
 
 ### Properties
@@ -38,6 +40,9 @@ max: int
 value: int
 id: string
 width: string
+step: int
+btnUp: string
+btnDown: string
 customFormat: string
 showName: bool
 showButtons: bool
@@ -57,6 +62,12 @@ This is the detailed properties:
 `id`: A unique ID for the progress bar. *Defaults to* <font color="#c00000">null</font>.
 
 `width`: The bar width, you can use any [CSS Units](https://www.w3schools.com/csSref/css_units.php). *Defaults to* <font color="#fac08f">'160px'</font>.
+
+`step`: Controls how much the progress bar’s value increases or decreases with a single button click. *Defaults to* <font color="#8db3e2">1</font>.
+
+`btnUp`: Changes the display text or symbol inside the increment button. *Defaults to* <font color="#b2a2c7">'+'</font>.
+
+`btnDown`: Changes the display text or symbol inside the decrement button. *Defaults to* <font color="#b2a2c7">'-'</font>.
 
 `customFormat`: The custom value label formatting, for more info on how to format the label using this property, refer to the [Custom Formatting](#custom-formatting) section. *Defaults to* <font color="#fac08f">'[<font color="#95b3d7">{value}</font>/<font color="#95b3d7">{max}</font>]'</font>.
 
@@ -85,10 +96,13 @@ Yay! You now have a custom format for the label.
 
 Every normal property (except for the booleans) are supported in the custom formatting, as long as you wrap them inside *curly braces*.
 
-<font color="#a5a5a5">Note: You can also use the customFormat property, just theres 2 little things:</font>
-<font color="#a5a5a5">- It's renamed to just `{format}`, so if you try to use `{customFormat}` it won't work.</font>
-<font color="#a5a5a5">- Its very confusing, as it doesn't really remove the '{format}', and it keeps the normal strings that are before/after it, so if you were to use `customFormat: "{format} test"`, you would get '{format} test test' (with '{format} test' being the format and 'test' being the text after it.</font>
+Also, there are some unique custom formatting-only "properties":
 
+- `{percent}/{percentage}/{%}`: The completion percentage of the progress bar, calculated using the following formula: 
+
+$$\lfloor \left( \frac{\text{currentVal}}{\text{max}} \right) \times 100 \rceil$$
+
+*(Note: Calculated as `(currentVal / max) * 100` using Round Half Up rounding to the nearest whole integer).*
 ### For developers:
 
 You are completely free to use, edit, and anything else with the code in this plugin. If you repost it anywhere else, give me the credits, and don't remove the comment on line 1 of main.js.
