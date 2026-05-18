@@ -27,7 +27,6 @@ id: new-progressbar
 
 And that's it! You now have a completely working progress bar:)
 
-![[Pasted image 20260517191500.png|463]]
 And yes, there is more customization for it, if you want to see them, go to the [Properties Page](#properties).
 
 ### Properties
