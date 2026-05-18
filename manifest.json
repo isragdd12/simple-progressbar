@@ -1,7 +1,7 @@
 {
     "id": "obsidian-progbar",
     "name": "Custom Progress Bar Blocks",
-    "version": "1.1.0",
+    "version": "1.0.0",
     "minAppVersion": "1.0.0",
     "description": "Create isolated, highly customizable and interactive progress bars.",
     "author": "isragdd",
