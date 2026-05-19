@@ -1,6 +1,6 @@
 {
     "id": "simple-progressbar",
-    "name": "Simple Progress Bar",
+    "name": "Simple ProgressBar",
     "version": "1.0.1",
     "minAppVersion": "1.0.0",
     "description": "Create isolated, highly customizable and interactive progress bars.",
