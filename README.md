@@ -102,9 +102,12 @@ Also, there are some unique custom formatting-only "properties":
 
 $$\lfloor \left( \frac{\text{currentVal}}{\text{max}} \right) \times 100 \rceil$$
 
-*(Note: Calculated as `(currentVal / max) * 100` using Round Half Up rounding to the nearest whole integer).*
+(`(currentVal / max) * 100` using Round Half Up rounding to the nearest whole integer).
+
 ### For developers:
 
 You are completely free to use, edit, and anything else with the code in this plugin. If you repost it anywhere else, give me the credits, and don't remove the comment on line 1 of main.js.
+
+The code is also pretty easy to read and edit, but if you need help i might be able to help you, if so, contact me on 
 
 This is experimental, and my first obsidian plugin, so feel free to give me any feedback/suggestion! :)
